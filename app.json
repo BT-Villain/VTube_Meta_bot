@@ -7,9 +7,9 @@
       "telegram",
       "python"
     ],
-    "repository": "https://github.com/shrey2199/LD_Meta_bot",
-    "website": "https://github.com/shrey2199/LD_Meta_bot",
-    "success_url": "https://t.me/s_rawal",
+    "repository": "https://github.com/Villain-4u/LD_Meta_bot",
+    "website": "https://github.com/Villain-4u/LD_Meta_bot",
+    "success_url": "https://github.com/Villain-4u/LD_Meta_bot",
     "env": {
       
       "BOT_TOKEN": {
