@@ -59,7 +59,7 @@ def restricted(func):
         user_id = update.from_user.id
         if (restricted_mode) and (str(user_id) not in ADMIN_LIST):
             print("Unauthorized access denied for {} - {}.".format(user_id, update.from_user.username))
-            bot.send_message(update.chat.id, "*Error :\t\t*You are not Authorized to access the bot.\n\nPls Contact [Bot Admin](https://t.me/s_rawal) !!", parse_mode='Markdown', disable_web_page_preview=True)
+            bot.send_message(update.chat.id, "*Error :\t\t*You are not Authorized to access the bot.\n\nPls Contact [Bot Admin](https://t.me/Villain_Here4U) !!", parse_mode='Markdown', disable_web_page_preview=True)
             return
         return func(update, *args, **kwargs)
     return wrapped
@@ -68,7 +68,7 @@ def restricted(func):
 @restricted
 def start(m):
     uptime = get_readable_time((time.time() - botStartTime))
-    start_string = "Hi ! Welcome to Libdrive Manager Bot by <a href='telegram.me/s_rawal'>Shreyansh Rawal</a> !\n\n<b>I'm Alive Since : </b><code>" + uptime + "</code>\n\n ✯ <b>For More Info</b>, Send /help to the Bot !!\n\n ✯ <b>Also Read the Important Instructions</b> by clicking the Instructions Button in /help !!"
+    start_string = "Hi ! Welcome to VTube Manager Bot by <a href='telegram.me/VTube_Movies'>VTube Movies</a> !\n\n<b>I'm Alive Since : </b><code>" + uptime + "</code>\n\n ✯ <b>For More Info</b>, Send /help to the Bot !!\n\n ✯ <b>Also Read the Important Instructions</b> by clicking the Instructions Button in /help !!"
     if len(PIC.replace(" ", "")) != 0:
         bot.send_photo(m.chat.id, PIC, caption = start_string, parse_mode=telegram.ParseMode.HTML)
     else:
@@ -437,8 +437,8 @@ def addaccount(m):
             r = requests.post('https://' + LD_DOMAIN + '/api/v1/config', headers=headers, params=params, data=data)
             res = r.json()
             if res["code"] == 200 and res["success"] == True:
-                AccS="<b>Username :</b> <code>" + username + "</code>\n<b>Password :</b> <code>" + password + "</code>\n<b>Auth :</b> <code>" + auth + "</code>\n<b>Pic :</b> <code>" + pic + "</code>\n"
-                bot.send_message(m.chat.id, text="<b>Account Added Successfully :- </b>\n\n" + AccS , parse_mode=telegram.ParseMode.HTML, disable_web_page_preview=True)
+                AccS="<b>Username :</b> <code>" + username + "</code>\n<b>Password :</b> <code>" + password + "</code>\n<b>Auth :</b> <code>" + auth + "</code>[Not ReQuired]\n<b>Pic :</b> <code>" + pic + "</code>\n"
+                bot.send_message(m.chat.id, text="<b>Your VTube Account Is Successfully Created :- </b>\n\n" + AccS + Dont Share This With Others.\n1 Account is Limited to 3 Devices Only. To Get Another Account👉 @Villain_Here4U\n@VTube_Movies, parse_mode=telegram.ParseMode.HTML, disable_web_page_preview=True)
             else:
                 bot.send_message(m.chat.id, text="<code>Unknown Error Occured !!\nPlease Verify Your Credentials !!</code>", parse_mode=telegram.ParseMode.HTML)
         except:
