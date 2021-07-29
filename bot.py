@@ -85,6 +85,7 @@ def help(m):
         \n/assignid - <b>To Assign <code>bot_id</code> to All Accounts and Categories.</b>
         \n/unassignid - <b>To Remove <code>bot_id</code> from All Accounts and Categories.</b>
         \n/accounts - <b>To View Registered Accounts of your Libdrive.</b>
+        \n/accountsclip - *To View Your Accounts in An Online Paste. (One Time Visit Pastes at cl1p.net)*
         \n/addaccount - <b>To Add an Account to Libdrive.</b>
         \n/rmaccount - <b>To Remove an Account from Libdrive.</b>
         \n/rmaccid - <b>To Remove an Account from Libdrive using id.</b>
@@ -379,6 +380,52 @@ def accounts(m):
             bot.send_message(m.chat.id, text="<code>Unknown Error Occured !!\nPlease Verify Your Credentials !!</code>", parse_mode=telegram.ParseMode.HTML)
     except:
         bot.send_message(m.chat.id, text="<code>LibDrive Server Not Accessible !!</code>", parse_mode=telegram.ParseMode.HTML)
+        
+@bot.message_handler(commands=['accountsclip'])
+def accountsclip(m):
+    url = 'https://' + LD_DOMAIN + '/api/v1/config?secret=' + SECRET
+    try:
+        r = requests.get(url)
+        res = r.json()
+        if res["code"] == 200 and res["success"] == True:
+            AccL = res["content"]["account_list"]
+            TAcc = 0
+            AccS = ""
+            AccN = 0
+            for account in AccL:
+                if "bot_id" in account.keys():
+                    AccN+=1
+                    AccS=AccS + str(AccN) + ". " + str(account["username"]) + " : " + str(account["auth"]) + "\n    To Delete : /rmaccid " + str(account["bot_id"]) + "\n\n"
+                else:
+                    AccN+=1
+                    AccS=AccS + str(AccN) + ". " + str(account["username"]) + " : " + str(account["auth"]) + "\n\n"
+                TAcc+=1
+
+            headers = {
+                'Content-Type': 'text/html; charset=UTF-8',
+            }
+
+            data = str(AccS)
+
+            clip_random = "".join(choice(allchar) for x in range(randint(20, 20)))
+
+            clip_api_url = 'https://api.cl1p.net/{}'.format(clip_random)
+            clip_url = 'https://cl1p.net/{}'.format(clip_random)
+
+            response = requests.post(clip_api_url, headers=headers, data=data)
+
+            keyboard = telebot.types.InlineKeyboardMarkup()
+            keyboard.row(
+                telebot.types.InlineKeyboardButton("Your Accounts !!", url=clip_url)
+            )
+
+            bot.send_message(m.chat.id, text=f"*Accounts Found !!*\n\n`Total Accounts : `{TAcc}", reply_markup=keyboard, parse_mode=telegram.ParseMode.MARKDOWN)
+            print(clip_api_url, "  &  ", clip_url)
+        else:
+            bot.send_message(m.chat.id, text="`Unknown Error Occured !!\nPlease Verify Your Credentials !!`", parse_mode=telegram.ParseMode.MARKDOWN)
+    except:
+        bot.send_message(m.chat.id, text="`LibDrive Server Not Accessible !!`", parse_mode=telegram.ParseMode.MARKDOWN)
+
 
 @bot.message_handler(commands=['addaccount'])
 @restricted
