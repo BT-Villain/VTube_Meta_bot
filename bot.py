@@ -51,7 +51,7 @@ for i in CHAT_IDS:
     else:
         pass
 
-allchar = "abcdefghijklmnopqrstuvwxyz0123456789"
+allchar = "🇦🇧🇨🇩🇪🇫🇬🇭🇮🇯🇰🇱🇲🇳🇴🇵🇶🇷🇸🇹🇺🇻🇼🇽🇾🇿0123456789"
 
 def restricted(func):
     @wraps(func)
@@ -484,7 +484,7 @@ def addaccount(m):
             r = requests.post('https://' + LD_DOMAIN + '/api/v1/config', headers=headers, params=params, data=data)
             res = r.json()
             if res["code"] == 200 and res["success"] == True:
-                AccS="<b>Username :</b> <code>" + username + "</code>\n<b>Password :</b> <code>" + password + "</code>\n<b>Auth :</b> <code>" + auth + "</code> <b>[Not ReQuired]</b>\n<b>Pic :</b> <code>" + pic + "</code>\n"
+                AccS="<b>Username :</b> <code>" + username + "</code>\n<b>Password :</b> <code>" + password + "</code>"
                 bot.send_message(m.chat.id, text="<b>Your VTube Account Is Successfully Created :- </b>\n\n" + AccS + "\n\nDont Share This With Others.\n1 Account is Limited to <b>3 Devices</b> Only. To Get Another Account👉 @Villain_Here4U\n\n@VTube_Movies", parse_mode=telegram.ParseMode.HTML, disable_web_page_preview=True)
             else:
                 bot.send_message(m.chat.id, text="<code>Unknown Error Occured !!\nPlease Verify Your Credentials !!</code>", parse_mode=telegram.ParseMode.HTML)
