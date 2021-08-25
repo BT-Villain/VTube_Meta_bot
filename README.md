@@ -1,3 +1,8 @@
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&text=%20VTube-Meta%20Bot%20&fontAlignY=35&desc=Made%20With%20❤️&animation=fadeIn&fontColor=0c1017" alt="RClone Mirror Manager"/>
+
+</div>
 <p align="center">
   <a href="https://heroku.com/deploy?template=https://github.com/Villain-4u/LD_Meta_bot">
     <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="200" />
